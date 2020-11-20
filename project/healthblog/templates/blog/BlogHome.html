@@ -5,7 +5,9 @@
 {%block title%}
 Home
 {%endblock title%}
-
+{% block Blog_active %}
+active
+{% endblock Blog_active %}
 {%block body%}
 <style>
 
@@ -35,14 +37,14 @@ Home
     {%endif%}
     {%endif%}
             </div>
-            <p class="card-text mb-auto">{{post.body| truncatechars:500}}</p>
+            <p class="card-text mb-auto">{{post.body| safe | truncatechars:500}}</p>
             <div class="my-2">
             	<a href="{%url 'BlogDetail' post.pk%}" role="button" class="btn btn-primary">Continue reading</a>
             </div>
             
         </div>
         <div class="col-auto d-none d-lg-block">
-            <img src="https://source.unsplash.com/IGfIGP5ONV0/200x200" alt="">
+            <!-- <img src="https://source.unsplash.com/IGfIGP5ONV0/200x200" alt=""> -->
         </div>
         </div>
 

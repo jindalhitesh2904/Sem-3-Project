@@ -24,7 +24,7 @@ import joblib as jb
 model = jb.load('trained_model')
 
 def home(request):
-	return render(request,'doctor/home.html')
+	return render(request,'doctor/home.html',)
 	
 def about(request):
 	# return HttpResponse('hr')
@@ -71,7 +71,7 @@ def handleSignup(request):
           html_message = loader.render_to_string('doctor/email_regis.html',{'username':username})
 
           message = ''
-          send_mail('We heard you!!',message,settings.EMAIL_HOST_USER,[str(email)],fail_silently=True,html_message=html_message)
+          send_mail('Thank you for registering!!',message,settings.EMAIL_HOST_USER,[str(email)],fail_silently=True,html_message=html_message)
           return redirect('doctorHome')
   else:
         if request.user.is_authenticated:
@@ -135,7 +135,7 @@ def doctor_list(request):
     paginated_list=Paginator(doctors,5)
     page_number=request.GET.get('page')
     doctor_page_obj=paginated_list.get_page(page_number)
-    context={'doctors':doctors,'myFilter1':myFilter1,'doctor_page_obj':doctor_page_obj}
+    context={'doctors':doctors,'myFilter1':myFilter1,'doctor_page_obj':doctor_page_obj,'var':1}
     return render(request,'doctor/doctor_list.html',context)
 
 def checkdisease(request):
@@ -331,3 +331,9 @@ def checkdisease(request):
         print(special_id)
 
         return JsonResponse({'predicteddisease': predicted_disease ,'confidencescore':confidencescore , "consultdoctor": consultdoctor, "special_id":special_id})
+
+
+
+def payment(request):
+   return render(request,'doctor/payment.html')
+
